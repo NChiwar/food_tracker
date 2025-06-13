@@ -1,0 +1,179 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #F8F9FA;
+    color: #333;
+}
+
+/* Welcome Screen */
+.welcome-screen {
+    background: linear-gradient(135deg, #81C784, #E0E0E0);
+    min-height: 100vh;
+}
+.welcome-screen h1 {
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+.welcome-screen p {
+    max-width: 700px;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+    border-radius: 4px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.btn-primary:hover {
+    transform: scale(1.05);
+    background-color: #388E3C;
+    border-color: #388E3C;
+}
+.btn-outline-dark, .btn-outline-primary {
+    border-radius: 4px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.btn-outline-dark:hover, .btn-outline-primary:hover {
+    transform: scale(1.05);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Navbar */
+.navbar {
+    border-radius: 4px;
+    background-color: #FFFFFF;
+}
+.navbar-brand {
+    color: #4CAF50 !important;
+    font-weight: 600;
+}
+.nav-link {
+    color: #333 !important;
+    transition: color 0.3s ease;
+}
+.nav-link:hover, .nav-link.active {
+    color: #4CAF50 !important;
+}
+
+/* Cards */
+.card {
+    border: none;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.card-title {
+    color: #4CAF50;
+}
+.card-text {
+    color: #333;
+    font-size: 1.5rem;
+}
+.card-text.display-6 {
+    font-size: 1.5rem;
+}
+
+/* Card Spacing for Dashboard */
+.card-spacing {
+    margin: 0 auto;
+}
+
+/* Form Selects */
+.form-select {
+    border-radius: 4px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.form-select:focus {
+    border-color: #4CAF50;
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+}
+
+/* Table */
+.table {
+    border-radius: 8px;
+    overflow: hidden;
+}
+.table-dark {
+    background-color: #4CAF50;
+}
+.table-hover tbody tr:hover {
+    background-color: rgba(76, 175, 80, 0.1);
+}
+.high {
+    color: #4CAF50;
+    font-weight: 500;
+}
+.medium {
+    color: #FFECB3;
+    font-weight: 500;
+}
+.low {
+    color: #EF5350;
+    font-weight: 500;
+}
+.table-responsive {
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+/* Spinner */
+.spinner-border {
+    border-color: #4CAF50;
+    border-right-color: transparent;
+}
+
+/* Section Headers */
+h2, h5 {
+    color: #4CAF50;
+    font-weight: 600;
+}
+
+/* Chart Container */
+.chart-container {
+    position: relative;
+    width: 100%;
+    height: 250px;
+}
+
+/* About Background */
+.about-bg {
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://via.placeholder.com/1200x800?text=Market') no-repeat center center/cover;
+}
+
+/* Justified Text */
+.text-justify {
+    text-align: justify;
+}
+
+/* Footer */
+footer {
+    border-top: 1px solid #E0E0E0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .welcome-screen h1 {
+        font-size: 2.5rem;
+    }
+    .welcome-screen p {
+        font-size: 1rem;
+    }
+    .form-select {
+        width: 100% !important;
+        min-width: unset;
+        margin-bottom: 10px;
+    }
+    .card-text.display-6 {
+        font-size: 1.2rem;
+    }
+    .chart-container {
+        height: 200px;
+    }
+    .card-spacing {
+        margin-bottom: 15px;
+    }
+}

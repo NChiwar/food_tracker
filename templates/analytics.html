@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Price Tracker - Analytics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        .chart-container {
+            width: 100% !important;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm" style="border-radius: 4px;">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="/">Food Tracker</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/prices">Prices</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/analytics">Analytics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Analytics Section -->
+    <section id="analytics" class="py-5 bg-light">
+        <div class="container">
+            <!-- Filters -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <select id="stateFilter" class="form-select" style="border-radius: 4px;">
+                        <option value="all">All States</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select id="regionFilter" class="form-select" style="border-radius: 4px;">
+                        <option value="all">All Markets</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select id="foodFilter" class="form-select" style="border-radius: 4px;">
+                        <option value="all">All Foods</option>
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select id="yearFilter" class="form-select" style="border-radius: 4px;">
+                        <option value="all">All Years</option>
+                    </select>
+                </div>
+            </div>
+            <div id="loading" class="text-center mb-4">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+
+            <div class="card shadow-sm animate__animated animate__fadeInUp" style="border-radius: 8px;">
+                <div class="card-body">
+                    <h5 class="card-title text-center mb-3">Average Prices by State</h5>
+                    <table class="table table-striped table-hover" id="analyticsTable" style="border-radius: 8px; overflow: hidden;">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>State</th>
+                                <th>Average Price (NGN)</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                    <div class="text-center" id="pagination"></div>
+                </div>
+            </div>
+
+            <!-- Chart Section -->
+            <div class="row mt-4">
+                <div class="col-md-12 text-center mb-3">
+                    <select id="chartType" class="form-select" style="max-width: 200px; margin: 0 auto; border-radius: 4px;">
+                        <option value="bar">Bar Chart</option>
+                        <option value="pie">Pie Chart</option>
+                        <option value="line">Line Chart</option>
+                    </select>
+                </div>
+                <div class="col-md-12">
+                    <div class="card shadow-sm animate__animated animate__fadeInUp" style="border-radius: 8px;">
+                        <div class="card-body">
+                            <h5 class="card-title text-center mb-3">Price Visualization</h5>
+                            <div class="chart-container">
+                                <canvas id="priceChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-3 mt-5">
+        <div class="container text-center">
+            <p class="text-muted mb-0">© 2025 Food Price Tracker. <a href="/about" class="text-primary">About Us</a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="/static/script.js"></script>

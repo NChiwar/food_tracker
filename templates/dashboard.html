@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Price Tracker - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top bg-white shadow-sm" style="border-radius: 4px;">
+        <div class="container">
+            <a class="navbar-brand fw-bold text-primary" href="/">Food Tracker</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="/dashboard">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/prices">Prices</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/analytics">Analytics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="py-5 bg-light">
+        <div class="container">
+            <!-- Year Filter -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <select id="yearFilter" class="form-select" style="border-radius: 4px;">
+                        <option value="all">All Years</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div id="loading" class="text-center mb-4">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+
+            <!-- Metrics Cards -->
+            <div class="row g-3 justify-content-center mb-5">
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="card text-center shadow-sm animate__animated animate__fadeInUp" style="border-radius: 8px; min-height: 150px;">
+                        <div class="card-body">
+                            <h5 class="card-title">Food Items</h5>
+                            <p class="card-text display-6" id="foodItems">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="card text-center shadow-sm animate__animated animate__fadeInUp" style="border-radius: 8px; min-height: 150px; animation-delay: 0.1s;">
+                        <div class="card-body">
+                            <h5 class="card-title">Markets</h5>
+                            <p class="card-text display-6" id="regions">0</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="card text-center shadow-sm animate__animated animate__fadeInUp" style="border-radius: 8px; min-height: 150px; animation-delay: 0.2s;">
+                        <div class="card-body">
+                            <h5 class="card-title">Avg Price</h5>
+                            <p class="card-text display-6" id="avgPrice">₦0</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-3 justify-content-center">
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="card text-center shadow-sm animate__animated animate__fadeInUp" style="border-radius: 8px; min-height: 150px; animation-delay: 0.3s;">
+                        <div class="card-body">
+                            <h5 class="card-title">Highest Price</h5>
+                            <p class="card-text" id="highestPrice">-</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="card text-center shadow-sm animate__animated animate__fadeInUp" style="border-radius: 8px; min-height: 150px; animation-delay: 0.4s;">
+                        <div class="card-body">
+                            <h5 class="card-title">Lowest Price</h5>
+                            <p class="card-text" id="lowestPrice">-</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="card text-center shadow-sm animate__animated animate__fadeInUp" style="border-radius: 8px; min-height: 150px; animation-delay: 0.5s;">
+                        <div class="card-body">
+                            <h5 class="card-title">Most Available</h5>
+                            <p class="card-text" id="mostAvailable">-</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Summary Table and Chart -->
+            <div class="row g-4 mt-4">
+                <div class="col-md-6">
+                    <div class="card shadow-sm animate__animated animate__fadeInUp" style="border-radius: 8px; animation-delay: 0.6s;">
+                        <div class="card-body">
+                            <h5 class="card-title text-center mb-3">Top 5 Priced Items</h5>
+                            <table class="table table-striped table-hover" id="summaryTable" style="border-radius: 8px; overflow: hidden;">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Food Item</th>
+                                        <th>Market</th>
+                                        <th>Price (NGN)</th>
+                                        <th>Availability</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <div class="text-center">
+                                <a href="/prices" class="btn btn-primary mt-3" style="border-radius: 4px;">View All Prices</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card shadow-sm animate__animated animate__fadeInUp" style="border-radius: 8px; animation-delay: 0.7s;">
+                        <div class="card-body">
+                            <h5 class="card-title text-center mb-3">Average Prices by State</h5>
+                            <div class="chart-container">
+                                <canvas id="regionChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-3 mt-5">
+        <div class="container text-center">
+            <p class="text-muted mb-0">© 2025 Food Price Tracker. <a href="/about" class="text-primary">About Us</a></p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="/static/script.js"></script>
